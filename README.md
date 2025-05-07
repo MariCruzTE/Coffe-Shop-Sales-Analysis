@@ -78,3 +78,92 @@ Las contribuciones están abiertas. Si deseas mejorar o ampliar el proyecto, pue
 
 Mª Cruz T.E.  
 [GitHub: MariCruzTE](https://github.com/MariCruzTE)
+
+
+## Pasos seguidos durante el proyecto
+
+
+
+
+### Comprension general datos
+- Dataset con 5001 filas y 21 columnas iniciales
+- Se comprueba que no hay filas duplicadas
+-  Se inicia el editor de Power Query para revisar y comprender las columnas:
+     - Se cambian los nombres de columnas para que no haya mayusculas y sean mas adecuados
+-contenido de columnas:
+     - id_venta: 
+          - Identificador único de la transacción de venta
+          - Sin errores, sin nulos
+          - Se cambia tipo de dato a texto
+     - fecha: fecha de las ventas, 
+          - comprende fechas entre el 01-01-2025 y 18-04-2025, 108 distintos, sin nulos
+          - Se cambia tipo de dato a fecha
+     - hora:
+          - hora de la venta
+          - entre las 7:00 y las 21:00
+          - Se cambia tipo de dato a hora
+     - sucursal:
+          - tienda que realiza la venta parecen ser de Cordoba, Argentina
+          - 4 valores únicos, posible estandarizacion de nombres
+               - Sucursal Nueva Córdoba ,Sucursal Shopping ,Sucursal Av. Colón ,Sucursal San Lorenzo 47
+          - sin nulos, tipo de dato texto
+     - producto:
+          - nombre del producto vendido
+          -  36 valores distintos
+          - sin nulos, tipo de dato texto
+     - categoría:
+          - categoria del producto
+          -  11 distintas
+          -  sin nulos, formato texto
+     -tamaño:
+          - Tamaño del producto vendido
+          - 5 distintos (Tall, Pequeño, Grande, Venti)
+               - nombres de tamaños en ingles y español, estandarizar datos
+          - 73% de celdas vacías
+               - hacer tratamiento de nulos
+     - cantidad:
+          - unidades vendidas en la transacion de compra
+          - 5 valores distintos entre 1 y 5
+          - sin nulos, se cambia tipo de dato a numero entero
+     - precio_ud:
+          - precio unitario del producto
+          - formato decimales con .
+     - total_vemta:
+          - precio unitario del producto
+          - formato decimales con .
+     - canal_compra:
+          - canal por el que se ha realizado la compra
+          -  3 valores distintos (En tienda, Take Away, Delivery)
+          - en ingles y español, estandarizar datos
+     - metodo_pago:
+          - 3 distintos (App, tarjeta y efectivo)
+          - estandarizar datos, cambiar App por palabra completa
+     - cliente_miembro:
+          - 2 distintos, si y no
+     - descuento_miembro:
+          - 3 distintos (0, 10, 15)
+     - promoción_aplicada:
+          - 4 distintos (combo, ninguna, 2x1, happy Hour)
+          -  estandarización de datos
+     - vendedor:
+          - 6 únicos(Julián, Luis, Sofía, Marcos, Florencia, Camila)
+     - turno:
+          - 3 únicos(Tarde, Mañana, Noche)
+     -tiempo_preparacion:
+          - valor decimal, supongo en minutos
+     - satisfacción cliente:
+          - entre 1 y 5
+     - stock antes:
+     - stock despues:
+
+- Se cambia el tipo de datos mas adecuado en cada columna
+- se sustituyen los (.) por (,) para adecuar los números decimales a la zona
+- Elegir las columnas que se van a quedar, posibles descartes:
+     - descuento miembro, no parece una columna relevante ni veo consistencia en los datos
+     - las dos columnas de stock, no parecen relevantes  puesto que nunca llegan a tener roturas de stock que podria afectar a las ventas
+- posibles agrupaciones que pudieran ser interesantes
+     - por rangos de importe de gasto
+     - por rangos de tiempo de preparacion
+- creacion de columnas con fechas disgregadas dia, dia de la semana, mes, etc
+- estadistica descriptiva
+     - datos>analisis de datos>estadistica descriptiva
