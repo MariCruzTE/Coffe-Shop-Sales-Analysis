@@ -1,6 +1,6 @@
-# 📄 Conclusiones del Análisis de Ventas - Coffee Shop
+# 📄 Conclusiones del Análisis de Ventas - Starbucks
 
-Este documento recoge los principales hallazgos, observaciones y recomendaciones obtenidas tras realizar el análisis de ventas de la cafetería.
+Este documento recoge los principales hallazgos, observaciones y recomendaciones obtenidas tras realizar el análisis de ventas de la cadena Starbucks.
 
 ---
 
@@ -8,7 +8,7 @@ Este documento recoge los principales hallazgos, observaciones y recomendaciones
 
 Breve resumen de lo que se ha analizado y con qué objetivo.
 
-> Ejemplo: Se ha realizado un análisis descriptivo de las ventas registradas entre [fechas], con el objetivo de identificar patrones de consumo, productos más vendidos y comportamiento por tipo de cliente y hora del día.
+> Ejemplo: Se ha realizado un análisis descriptivo de las ventas registradas en el año 2025, con el objetivo de identificar patrones de consumo, comportamiento del cliente, desempeño por tienda y productos más vendidos.
 
 ---
 
@@ -16,10 +16,10 @@ Breve resumen de lo que se ha analizado y con qué objetivo.
 
 Lista clara de los hallazgos más importantes:
 
-- Los productos más vendidos son...
-- La franja horaria de mayor facturación es...
-- El ticket promedio por tipo de producto/cliente es...
-- Se detecta estacionalidad en los meses de...
+- Las tiendas con mayor volumen de ventas son...
+- Los días de mayor actividad comercial corresponden a...
+- El ticket promedio varía según el método de pago y categoría de producto.
+- La mayor parte de las transacciones se concentran en ciertas horas del día.
 
 ---
 
@@ -27,9 +27,9 @@ Lista clara de los hallazgos más importantes:
 
 Interpretación del análisis con valor para la toma de decisiones:
 
-- Incrementar la oferta de [producto] podría aumentar las ventas en [franja horaria].
-- Las promociones en [días específicos] generan un incremento del X% en las ventas.
-- Hay una baja facturación los lunes que podría compensarse con una campaña específica.
+- Aumentar la oferta de [tipo de producto] en franjas horarias clave podría mejorar los ingresos.
+- Se identifican diferencias en comportamiento de compra según el tipo de tienda.
+- Campañas dirigidas a determinados días pueden aumentar el volumen de clientes.
 
 ---
 
@@ -37,9 +37,9 @@ Interpretación del análisis con valor para la toma de decisiones:
 
 Mención de posibles debilidades del dataset o del análisis:
 
-- Los datos no incluyen devoluciones o cancelaciones.
-- Falta información sobre costes, por lo que no se puede analizar rentabilidad.
-- Algunos campos presentan valores faltantes o inconsistencias menores.
+- El dataset no incluye costes ni márgenes de producto.
+- La variable `cliente` no permite segmentaciones demográficas.
+- Algunos datos de fecha aparecen con formatos inconsistentes o vacíos.
 
 ---
 
@@ -47,9 +47,9 @@ Mención de posibles debilidades del dataset o del análisis:
 
 Acciones sugeridas basadas en los resultados obtenidos:
 
-- Explorar nuevos horarios de apertura/cierre según picos de ventas.
-- Implementar programas de fidelización para clientes frecuentes.
-- Evaluar el impacto de campañas promocionales mediante A/B testing.
+- Reforzar personal y stock en horas pico según la tienda.
+- Diseñar promociones adaptadas a hábitos de consumo detectados.
+- Incluir variables de fidelización para futuros análisis.
 
 ---
 
@@ -57,8 +57,8 @@ Acciones sugeridas basadas en los resultados obtenidos:
 
 Acciones que podrían formar parte de un análisis más avanzado:
 
-- Añadir variables externas (clima, días festivos, etc.) para mejorar contexto.
-- Analizar el comportamiento por categorías de clientes si existiera esa segmentación.
-- Crear un modelo predictivo para anticipar ventas en función de tendencias.
+- Incorporar datos meteorológicos o eventos especiales para entender variaciones en ventas.
+- Analizar el impacto de métodos de pago en la fidelización.
+- Crear dashboards dinámicos para seguimiento en tiempo real de KPI por tienda.
 
 ---

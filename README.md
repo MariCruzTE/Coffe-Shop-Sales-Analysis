@@ -1,13 +1,28 @@
-
 # ☕ Coffee Shop Sales Analysis
 
-Análisis exploratorio de las ventas en una cafetería utilizando datos históricos para identificar patrones, tendencias y oportunidades de mejora.
+📊 **Análisis de Ventas de Starbucks 2025**
+
+Este proyecto realiza un análisis exploratorio y descriptivo de los datos de ventas de Starbucks durante el año 2025. El objetivo es evaluar el comportamiento de compra de los clientes, identificar patrones relevantes en el consumo y generar visualizaciones efectivas que ayuden a la toma de decisiones.
 
 ---
 
 ## 📖 Descripción
 
-Este proyecto forma parte del módulo "Dashboard & Análisis de Datos" del programa de The Power Education. El objetivo es analizar las ventas de un coffee shop a partir de un conjunto de datos abierto, aplicando técnicas de limpieza, análisis descriptivo y visualización de datos.
+El conjunto de datos incluye información detallada sobre productos vendidos, ubicaciones de las tiendas, métodos de pago, fecha y hora de las transacciones, entre otros aspectos. El análisis se ha realizado principalmente en Excel, enfocándonos en:
+
+- Limpieza y preparación de datos
+- Análisis descriptivo y segmentación
+- Visualización mediante dashboards
+- Obtención de conclusiones prácticas para el negocio
+
+---
+
+## 📊 Dataset
+
+- **Fuente**: [Ventas Starbucks - Kaggle](https://www.kaggle.com/datasets/guadalupesaraviaweht/ventas-starbucks)
+- **Formato**: CSV
+- **Tamaño**: ~149.000 filas, 18 columnas
+- **Ubicación**: `./data/ventas_starbucks_2025.csv`
 
 ---
 
@@ -22,34 +37,40 @@ Este proyecto forma parte del módulo "Dashboard & Análisis de Datos" del progr
 
 ---
 
-## 📊 Dataset
+## 🛠 Instalación y Requisitos
 
-- **Fuente**: [Coffee Shop Sales - Kaggle](https://www.kaggle.com/datasets/divu2001/coffee-shop-sales-analysis)
-- **Formato**: CSV  
-- **Tamaño**: ~2000 filas, 14 columnas  
-- **Ubicación**: `./data/coffee_shop_sales.csv`
+Este proyecto se desarrolla utilizando principalmente Microsoft Excel para la exploración, análisis y visualización de datos. No requiere instalación de librerías ni herramientas adicionales. En futuras versiones podría ampliarse con análisis en Power BI o Python.
 
 ---
 
 ## 🔧 Herramientas Utilizadas
 
-- **Excel 365** para la limpieza, análisis y visualización de datos.  
-- **Git + GitHub** para el control de versiones y documentación del proyecto.  
+- **Excel 365** para la limpieza, análisis y visualización de datos.
+- **Git + GitHub** para el control de versiones y documentación del proyecto.
 - **Visual Studio Code** como entorno de trabajo.
 
 ---
 
 ## 📈 Resultados y Conclusiones
 
-*(Esta sección se completará al finalizar el análisis. Aquí incluirás un resumen de tus hallazgos más relevantes y capturas del dashboard si es posible).*
+_(Esta sección se completará al finalizar el análisis. Aquí incluirás un resumen de tus hallazgos más relevantes y capturas del dashboard si es posible)._
+Se identificaron patrones de compra según hora del día y ubicación.
+Las bebidas frías muestran mayor popularidad en temporadas cálidas.
+Se observa un incremento en las ventas digitales frente a las físicas.
 
 ---
 
 ## 🔄 Próximos Pasos
 
-- Finalizar el análisis descriptivo  
-- Construir el dashboard visual  
-- Documentar los hallazgos y recomendaciones
+- Completar análisis de segmentación por tienda y tipo de producto.
+- Agregar cálculos automáticos de KPIs en Excel.
+- Posible migración del análisis a Power BI o Python para mayor profundidad.
+
+---
+
+## 🤝 Contribuciones
+
+Las contribuciones están abiertas. Si deseas mejorar o ampliar el proyecto, puedes abrir un pull request o plantear una issue.
 
 ---
 
