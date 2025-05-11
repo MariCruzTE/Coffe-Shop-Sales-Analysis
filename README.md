@@ -19,11 +19,16 @@ El conjunto de datos incluye información detallada sobre productos vendidos, ub
 
 ## 🗂 Estructura del Proyecto
 
-```
-📁 data/           # Archivo original CSV con los datos
-📁 docs/           # Documentación adicional, capturas o notas
-📁 dashboard/      # Dashboard final en formato Excel
-📄 README.md       # Este archivo
+```bash
+Coffe-Shop-Sales-Analysis
+|----dashboard
+|   |----dashboard_starbucks_2025.xlsx      # Dashboard final en formato Excel
+|----data/
+|   |----ventas_starbucks_2025.csv         # Archivo original CSV con los datos
+|----docs/                                 # Documentación adicional
+|   |---conclusiones.md
+|----README.md
+|----.gitignore
 ```
 
 ---
@@ -72,9 +77,9 @@ A continuación se describen las columnas presentes en el dataset `ventas_starbu
 
 ## 🔍 Exploratory Data Analysis (EDA)
 
-## 🧹 Limpieza de Datos - Exploratory Data Analysis (EDA)
+## 🧹 EDA Analisis exploratorio inicial
 
-### 🔹 `id_venta`
+### `id_venta`
 
 - **Descripción**: Identificador único de cada venta, con formato tipo `VTA00001`.
 - **Tipo de dato**: Texto (string).
@@ -84,30 +89,30 @@ A continuación se describen las columnas presentes en el dataset `ventas_starbu
 
 ---
 
-### 🔹 `fecha`
+### `fecha`
 
 - **Descripción**: Fecha en la que se realizó la venta.
 - **Tipo de dato**: Fecha.
 - **Rango de fechas**: Desde `01/01/2025` hasta `18/04/2025`.
 - **Valores únicos**: 108 fechas distintas, coherente con el rango de fechas observado.
 - **Nulos**: No se han detectado valores nulos.
-- **Formato**: Correctamente reconocido como fecha por Excel.
-- **Acción necesaria**: Ninguna. Columna lista para análisis temporal.
+- **Formato**: Texto
+- **Acción necesaria**: Se cambia a formato fecha. Columna lista para análisis temporal.
 
 ---
 
-### 🔹 `hora`
+### `hora`
 
 - **Descripción**: Hora en la que se registró la venta.
 - **Tipo de dato original**: Texto.
 - **Rango observado**: Desde las `07:00` hasta las `21:00`.
 - **Nulos**: No se han detectado valores nulos.
 - **Acción realizada**: Se ha transformado el tipo de dato a formato hora para facilitar el análisis por franjas horarias.
-- **Acción pendiente**: Posible creación de nuevas columnas para agrupar por intervalos de tiempo (mañana, tarde, etc.).
+- **Acción pendiente**: Cambiar a formato hora
 
 ---
 
-### 🔹 `sucursal`
+### `sucursal`
 
 - **Descripción**: Tienda en la que se realizó la venta.
 - **Tipo de dato original**: Texto.
@@ -117,9 +122,452 @@ A continuación se describen las columnas presentes en el dataset `ventas_starbu
   - `Nueva Córdoba` → `Sucursal Nueva Córdoba`
   - `Córdoba Shopping` → `Sucursal Shopping`
   - `Avenida Colón 608` → `Sucursal Av. Colón`
-  - `San Lorenzo 25` / `Calle San Lorenzo 47` → Unificar como `Sucursal San Lorenzo 47` .
+  - `San Lorenzo 25` → `Sucursal San Lorenzo 25`
+  - `Calle San Lorenzo 47` → `Sucursal San Lorenzo 47` .
 - **Nulos**: No hay valores nulos.
 - **Acción pendiente**: Aplicar estandarización de nombres
+
+---
+
+### `producto`
+
+- **Descripción**: Nombre del producto vendido.
+- **Tipo de dato**: Texto.
+- **Valores únicos**: 36 productos distintos.
+- **Ejemplos**: `Termo Reutilizable`, `Té Verde en Hebras`, `Espresso Roast`, `Caramel Frappuccino`, `Croissant Relleno con Crema de Avellanas`.
+- **Nulos**: No se encontraron valores nulos.
+- **Acción recomendada**: ✔ No se requiere transformación adicional en esta columna.
+
+---
+
+### `categoría`
+
+- **Descripción**: Clasificación general del producto vendido.
+- **Tipo de dato**: Texto.
+- **Valores únicos**: 11 categorías distintas.
+- **Ejemplos**: `Merchandising`, `Té`, `Snacks`, `Café en Granos`, `Bakery`, `Frappuccino`, `Bebida Espresso Caliente`.
+- **Nulos**: No se encontraron valores nulos.
+- **Acción recomendada**: - Columna limpia
+
+---
+
+### `tamaño`
+
+- **Descripción**: Indica el tamaño del producto vendido.
+- **Tipo de dato**: Texto.
+- **Valores únicos**: 5 valores distintos (mezcla de inglés y español).
+- **Ejemplos**: `Tall`, `Pequeño`, `Grande`, `Venti`.
+- **Nulos**: Aproximadamente el 73% de las celdas están vacías.
+- **Inconsistencias detectadas**: Mezcla de idiomas en los nombres de tamaño.
+- **Acción recomendada**:
+  - 🔄 Estandarizar los valores a un único idioma (por ejemplo, todos en español: `Pequeño`, `Mediano`, `Grande`, `Extra_grande`, etc.).
+  - ⚠️ Analizar si los valores nulos se deben a categorías de productos que no tienen tamaño (como merchandising) antes de decidir cómo tratarlos.
+
+---
+
+### 🔸 `cantidad`
+
+- **Descripción**: Indica la cantidad de unidades vendidas en una transacción.
+- **Tipo de dato**: Número entero.
+- **Valores únicos**: 5 valores distintos, comprendidos entre 1 y 5.
+- **Nulos**: No se detectan valores nulos.
+- **Acción recomendada**:
+  - ✅ Cambiar el tipo de dato a número entero para facilitar el análisis cuantitativo.
+
+---
+
+### 🔸 `precio_ud`
+
+- **Descripción**: Precio unitario del producto vendido.
+- **Tipo de dato**: Numérico decimal (usa punto como separador decimal).
+- **Nulos**: No se detectan valores nulos.
+- **Acciones recomendadas**:
+  - ✅ Asegurar que el tipo de dato sea numérico decimal (float) para cálculos posteriores.
+  - 🔄 Sustituir el punto decimal (`.`) por coma (`,`) para adaptarlo al formato numérico regional.
+
+---
+
+### 🔸 `total_venta`
+
+- **Descripción**: Precio total de la venta (precio unitario multiplicado por cantidad).
+- **Tipo de dato**: Numérico decimal (usa punto como separador decimal).
+- **Nulos**: No se detectan valores nulos.
+- **Acciones recomendadas**:
+  - ✅ Verificar coherencia con el cálculo `precio_ud * cantidad`.
+  - 🔄 Sustituir el punto decimal (`.`) por coma (`,`) para adaptarlo al formato numérico regional.
+
+---
+
+### 🔸 `canal_compra`
+
+- **Descripción**: Canal a través del cual se ha realizado la compra.
+- **Tipo de dato**: Texto.
+- **Valores únicos**: 3 (`En tienda`, `Take Away`, `Delivery`), mezclando inglés y español.
+- **Nulos**: No se detectan.
+- **Acciones recomendadas**:
+  - 🔄 Estandarizar los valores para un único idioma (preferiblemente español).
+    - Ejemplo: `Take Away` → `Para llevar`.
+
+---
+
+### 🔸 `metodo_pago`
+
+- **Descripción**: Método de pago utilizado en la transacción.
+- **Tipo de dato**: Texto.
+- **Valores únicos**: 3 (`App`, `tarjeta`, `efectivo`).
+- **Nulos**: No se detectan.
+- **Acciones recomendadas**:
+  - 🔄 Estandarizar formato de texto.
+  - 📝 Sustituir `App` por su forma completa (por ejemplo, `Aplicación móvil`).
+
+---
+
+### 🔸 `cliente_miembro`
+
+- **Descripción**: Indica si el cliente es miembro del programa de fidelización.
+- **Tipo de dato**: Texto.
+- **Valores únicos**: 2 (`Sí`, `No`).
+- **Nulos**: No se detectan.
+- **Acciones recomendadas**: Ninguna, columna limpia
+
+---
+
+### 🔸 `descuento_miembro`
+
+- **Descripción**: Descuento aplicado por ser miembro.
+- **Tipo de dato**: Numérico.
+- **Valores únicos**: 3 (`0`, `10`, `15`).
+- **Nulos**: No se detectan.
+- **Acciones recomendadas**:
+  - ✅ Comprobar coherencia con la columna `cliente_miembro`.
+  - 📐 Verificar que los descuentos aplicados se corresponden con la política del programa.
+
+---
+
+### 🔸 `promoción_aplicada`
+
+- **Descripción**: Tipo de promoción utilizada en la venta.
+- **Tipo de dato**: Texto.
+- **Valores únicos**: 4 (`combo`, `ninguna`, `2x1`, `Happy Hour`).
+- **Acciones recomendadas**:
+  - 🔄 Estandarizar mayúsculas/minúsculas (`happy hour`, `combo`, etc.).
+  - ✅ Validar que los tipos de promoción se aplican correctamente según los registros
+
+---
+
+### 🔸 `vendedor`
+
+- **Descripción**: Nombre del vendedor responsable de la venta.
+- **Tipo de dato**: Texto.
+- **Valores únicos**: 6 (`Julián`, `Luis`, `Sofía`, `Marcos`, `Florencia`, `Camila`).
+- **Acciones recomendadas**:✅ No se requiere limpieza adicional los nombres son consistentes.
+
+---
+
+### 🔸 `turno`
+
+- **Descripción**: Turno del día en que se realizó la venta.
+- **Tipo de dato**: Texto.
+- **Valores únicos**: 3 (`Mañana`, `Tarde`, `Noche`).
+- **Acciones recomendadas**:✅ No se requiere limpieza adicional los nombres son consistentes.
+
+---
+
+### 🔸 `tiempo_preparacion`
+
+- **Descripción**: Tiempo requerido para preparar el pedido (en minutos).
+- **Tipo de dato**: Decimal.
+- **Rango de datos**: Entre 2 y 15 minutos.
+- **Nulos**: No detectados.
+- **Acciones recomendadas**:
+  - 🔁 Adaptar formato de número decimal al regional (usar `,` como separador decimal).
+  - 📉 Identificar valores atípicos si existen.
+
+---
+
+### 🔸 `satisfaccion_cliente`
+
+- **Descripción**: Valoración del cliente de 1 a 5.
+- **Tipo de dato**: Numérico.
+- **Acciones recomendadas**: Ninguna, columna limpia
+
+---
+
+### 🔸 `stock_antes`, `stock_despues`
+
+- **Descripción**: Cantidad de producto disponible antes y después de la venta.
+- **Acciones recomendadas**:
+  - ❌ Consideradas no relevantes para el análisis, ya que no se observan roturas de stock ni afectaciones a ventas.
+  - ✅ Se puede omitir del análisis y visualizaciones.
+
+---
+
+# 🔄 Transformaciones realizadas
+
+Durante la fase de limpieza de datos se han aplicado las siguientes transformaciones para garantizar la calidad y consistencia del dataset:
+
+### ✅ Limpieza y validación de columnas
+
+- **`id_venta`**: Verificado como identificador único sin valores duplicados ni nulos.
+- **fecha**: Validación de rango correcto entre 01/01/2025 y 18/04/2025. Sin nulos. Se utilizará para crear variables derivadas (día, mes, día de la semana).
+- **hora**: Transformación del tipo de dato a formato de hora.
+- **sucursal**: Estandarización de nombres a partir de una tabla auxiliar. Ocultada la columna original.
+- **producto**: Validación del contenido. No se aplica limpieza, pero se mantiene como referencia para análisis por artículo.
+- **categoría**: Verificada sin nulos. No requiere limpieza.
+- **tamaño**: Valores en español e inglés, estandarizados con tabla auxiliar. Alta proporción de nulos (73%). Se mantiene con tratamiento adicional posterior. Ocultada columna original.
+- **cantidad**: Cambio de tipo de dato a entero.
+- **precio_ud**: Confirmado en formato numérico con punto decimal. Se sugiere conversión posterior a coma decimal para adecuarse al estándar regional.
+- **total_venta**: Validado como campo calculado, se mantendrá coherente con `precio_ud` y `cantidad`. Mismo tratamiento con coma decimal.
+- **canal_compra**: Estandarización de valores en inglés/español con tabla auxiliar. Ocultada columna original.
+- **metodo_pago**: Estandarización de nombres (p.ej., “App” por “Aplicación móvil”). Ocultada columna original.
+- **cliente_miembro**: Confirmado con valores “sí” / “no”.
+- **descuento_miembro**: Columna descartada por escasa utilidad y baja consistencia en los datos.
+- **promocion_aplicada**: Estandarización de nombres. Ocultada la columna original.
+- **vendedor**: Verificado sin necesidad de limpieza.
+- **turno**: Validado sin valores inconsistentes.
+- **tiempo_preparacion**: Confirmado como campo decimal, posiblemente en minutos. A utilizar para análisis por eficiencia.
+- **satisfacción_cliente**: Validado con valores entre 1 y 5.
+- **stock_antes / stock_despues**: Columnas descartadas por no aportar valor significativo al análisis (no hay indicios de rotura de stock).
+
+### 🛠 Tratamiento especial de la columna `tamaño`
+
+Se identificó que aproximadamente el 73% de los valores en la columna `tamaño` estaban vacíos. Tras analizar los productos afectados, se concluyó que corresponden a artículos que no presentan opciones de tamaño (por ejemplo, tazas, termos, snacks o productos empaquetados).
+
+Se decidió reemplazar estos valores nulos por el texto `"Tamaño único"`, lo cual permite mantener la columna sin perder información útil ni introducir ambigüedad.
+
+Ejemplos de productos con tamaño único:
+
+- Termo Reutilizable
+- Té Verde en Hebras
+- Moneda de Chocolate
+- Muffin de Arándanos
+- House Blend
+- Cookie con Chips de Chocolate
+- Budín de Limón
+- Croissant de Manteca
+- ... (entre otros)
+
+Esto facilita posteriores análisis segmentados por tipo de tamaño y evita el uso de valores faltantes.
+
+---
+
+## Columnas Derivadas y Clasificaciones para Análisis
+
+Se han creado nuevas columnas a partir de la fecha y otras variables numéricas para facilitar análisis agrupados, comparativos y segmentados.
+
+#### Derivadas de la columna `fecha`:
+
+- **`dia_num`**: Día del mes (1-31).
+- **`dia_sem`**: Número del día de la semana (1 = Lunes, 7 = Domingo).
+- **`dia_nombre`**: Nombre del día de la semana (Lunes, Martes, etc.).
+- **`mes_num`**: Número del mes (1-12).
+- **`mes_nombre`**: Nombre del mes (enero, febrero, etc.).
+
+#### Clasificaciones para análisis agrupado:
+
+- **`clasificacion_venta`**: Segmentación por importe de venta total:
+
+  - _Venta Baja_: < 5.000
+  - _Venta Media_: 5.000 – 9.999
+  - _Venta Alta_: 10.000 – 14.999
+  - _Venta Muy Alta_: ≥ 15.000
+
+- **`clasificacion_preparación`**: Segmentación según el tiempo de preparación del pedido:
+  - _Preparación Rápida_: ≤ 5 min
+  - _Preparación Estándar_: 6 – 9 min
+  - _Preparación Lenta_: 10 – 12 min
+  - _Preparación Muy Lenta_: > 12 min
+
+---
+
+### 📈 Análisis Descriptivo de Variables Numéricas
+
+Se ha realizado un análisis estadístico de las principales variables numéricas del conjunto de datos. A continuación se detallan los resultados más relevantes:
+
+#### 🔢 `cantidad`
+
+- Media: **3,01**, Moda: **3**, Rango: **1–5**
+- Distribución muy **simétrica**, sin valores extremos.
+- La mayoría de los registros giran en torno al mismo valor.
+- Baja dispersión: comportamiento regular.
+
+#### 💰 `precio_unitario`
+
+- Media: **1.714,82**, Mediana: **1.605,35**, Moda: **1.578,49**
+- Rango: **700,01 – 3.498,88**
+- La media es mayor que la mediana y moda, lo que indica **asimetría positiva**: productos más caros elevan el promedio.
+- Variabilidad notable entre productos económicos y premium.
+
+#### 💵 `total_venta`
+
+- Media: **5.164,75**, Mediana: **4.709,98**, Moda: **3.602,24**
+- Rango: **702,91 – 17.377,25**
+- Alta **variabilidad**: ventas pequeñas y ventas grandes.
+- **Sesgo a la derecha**, con ventas muy altas que elevan la media.
+- Refleja diferentes tipos de tickets (consumos pequeños vs. grandes pedidos).
+
+#### ⏱ `tiempo_preparacion`
+
+- Media: **8,56 min**, Moda: **6,7 min**, Rango: **2 – 15 min**
+- Distribución **muy simétrica**, sin tiempos extremos.
+- **Poca dispersión**, tiempos similares en la mayoría de pedidos.
+- Curtosis negativa: valores muy centrados en torno a la media.
+
+#### 😀 `satisfaccion_cliente`
+
+- Media: **3,03**, Moda: **4**, Mediana: **3**
+- Rango: **1 – 5**
+- Distribución **equilibrada y centrada**.
+- Poca dispersión: los clientes valoran de forma bastante similar.
+- Aunque la moda es alta (4), la media y mediana indican una tendencia a valoraciones normales.
+
+---
+
+---
+
+### 🧪 Otras acciones realizadas o previstas
+
+- Creación de nuevas columnas derivadas de `fecha` para análisis temporal (`día`, `mes`, `día de la semana`, etc.).
+- Posible agrupación de métricas por rangos de gasto (`total_venta`) o por `tiempo_preparacion`.
+
+---
+
+---
+
+---
+
+---
+
+## 🧪 Transformaciones adicionales propuestas
+
+Durante el proceso de análisis se han considerado las siguientes transformaciones y decisiones sobre el dataset:
+
+### 🧹 Selección y descarte de columnas
+
+- **`descuento_miembro`**: Se detecta falta de consistencia en los valores y poca relevancia analítica. Se propone su eliminación para evitar ruido en el análisis.
+- **`stock_antes` y `stock_despues`**: Estas columnas no muestran roturas de stock ni comportamientos útiles para explicar ventas. Se considera prescindible su análisis.
+
+---
+
+### 📊 Agrupaciones de variables numéricas
+
+- **Rangos de importe total (`total_venta`)**:
+  - Se propone agrupar el importe total en tramos (por ejemplo: bajo, medio, alto) para facilitar el análisis del ticket promedio y comportamiento de los clientes.
+- **Rangos de tiempo de preparación (`tiempo_preparacion`)**:
+  - Agrupar por tramos (ej. <3 min, 3-5 min, >5 min) para estudiar el impacto del tiempo en la satisfacción del cliente o volumen de ventas.
+
+---
+
+### 📆 Creación de columnas temporales derivadas
+
+A partir de la columna `fecha`, se generan nuevas variables para enriquecer el análisis:
+
+- **`dia_mes`**: Día numérico del mes.
+- **`dia_semana`**: Día de la semana (Lunes, Martes...).
+- **`mes`**: Nombre del mes (Enero, Febrero...).
+- **`es_fin_de_semana`**: Variable booleana que indica si la venta ocurrió en sábado o domingo.
+
+Estas variables permitirán detectar patrones de comportamiento por franjas temporales, como días más fuertes en ventas, estacionalidad o preferencias horarias.
+
+---
+
+### Estandarización de valores categóricos
+
+Se ha realizado un proceso de estandarización en varias columnas categóricas para corregir diferencias de formato, errores tipográficos y asegurar consistencia en los valores.
+
+Para ello se utilizaron funciones de búsqueda (`BUSCARV`) con tablas auxiliares. Tras aplicar las transformaciones, se ocultaron las columnas originales y se mantuvieron únicamente las columnas con los valores estandarizados.
+
+Columnas estandarizadas:
+
+- `sucursal`
+- `canal_compra`
+- `metodo_pago`
+- `tamaño`
+- `promocion_aplicada`
+
+Esto permite un análisis más preciso y limpio, facilitando agrupaciones y visualizaciones coherentes.
+
+---
+
+## 🔍 Pasos Realizados en el Análisis
+
+1. **Importación del dataset original** desde Kaggle en formato `.csv`.
+2. **Revisión de la estructura del dataset** (tipos de datos, valores nulos, duplicados).
+3. **Limpieza de datos**:
+   - Corrección de tildes y codificación de caracteres.
+   - Estandarización de nombres de columnas y valores categóricos.
+   - Conversión de tipos de datos (texto → fecha, hora, numérico).
+   - Relleno de valores nulos donde era necesario (por ejemplo, tamaño del producto).
+4. **Transformaciones**:
+   - Generación de nuevas columnas temporales: día, mes, día de la semana.
+   - Clasificaciones de las ventas por volumen y por tiempo de preparación.
+   - Unificación de formatos numéricos para precios y tiempos.
+5. **Validación de integridad** entre columnas (`precio_ud * cantidad = total_venta`, coherencia de descuentos, etc.).
+6. **Eliminación de columnas irrelevantes** para el análisis (como stock antes/después).
+7. **Primer análisis estadístico** de cada variable con interpretación descriptiva.
+8. **Preparación del dataset limpio y enriquecido** para análisis en dashboard.
+9. **Análisis cruzado** de niveles de venta por sucursal para identificar patrones por tipo de ticket.
+10. **Construcción de tabla resumen** con distribución de ventas (Baja, Media, Alta, Muy Alta) por tienda.
+11. **Detección de anomalía** en la columna `vendedor` por incoherencias temporales en la asignación a sucursales.
+12. **Documentación de inconsistencias** y propuesta de exclusión de la variable `vendedor` para evitar sesgos.
+
+---
+
+## 💡 Insights Descubiertos hasta Ahora
+
+- El volumen de ventas es **relativamente estable en el tiempo**, con algunas variaciones por día de la semana.
+- Las **sucursales presentan diferencias claras** en el número total de ventas y en la distribución de los productos vendidos.
+- La mayoría de las ventas se concentran en productos de las categorías **"Bebidas calientes"** y **"Bebidas frías"**, con una alta rotación diaria.
+- El **canal de compra predominante es "En tienda"**, aunque el canal "Take Away" también tiene un peso importante.
+- La media de **satisfacción del cliente está en 3,03**, con una moda de 4, lo que indica **una percepción buena pero mejorable**.
+- El tiempo de preparación está bien controlado en general, con la mayoría de pedidos en el rango de **5 a 9 minutos**.
+- Las **promociones aplicadas no se distribuyen de forma equitativa**, lo que puede indicar estrategias locales de marketing o comportamiento del cliente según la sucursal.
+- Las **ventas de valor muy alto (más de 15.000)** son menos frecuentes, pero su impacto en el total de ingresos es significativo.
+- El **método de pago más común es la tarjeta**, seguido por efectivo y aplicación móvil.
+- Hay una proporción razonable de **clientes miembros**, pero no todos aprovechan el descuento, lo cual podría explorarse más.
+- Las ventas se concentran mayoritariamente en los niveles Medio y Bajo, representando más del 88% del total.
+- Las ventas Muy Altas son poco frecuentes (1.6%), pero destacan significativamente en la sucursal Avda Colón, que duplica en cantidad a las demás.
+- Esta concentración en Avda Colón puede indicar un perfil de cliente más predispuesto al consumo premium o bien una estrategia comercial distinta.
+- Se sugiere una revisión más profunda de esa sucursal o de los criterios de categorización aplicados.
+- Se identificó una anomalía en los datos de `vendedor`: los mismos empleados figuran trabajando en distintas tiendas a la vez, lo que sugiere un error de registro o automatización incorrecta.
+
+---
+
+---
+
+### 🔎 Análisis adicional por sucursal y combinación de variables
+
+#### 🏪 Distribución de ventas por nivel y sucursal
+
+| Nivel de Venta    | San Lorenzo | Nueva Córdoba | Córdoba Shopping | Avda Colón | Total     |
+| ----------------- | ----------- | ------------- | ---------------- | ---------- | --------- |
+| Venta Muy Alta    | 50          | 50            | 40               | 100        | 240       |
+| Venta Alta        | 378         | 345           | 382              | 391        | 1496      |
+| Venta Media       | 2019        | 1855          | 2010             | 1841       | 7725      |
+| Venta Baja        | 1369        | 1389          | 1429             | 1409       | 5596      |
+| **Total general** | **3816**    | **3639**      | **3861**         | **3741**   | **15057** |
+
+#### 📌 Conclusiones:
+
+- La **mayoría de las ventas** se concentran en los niveles **Medio** y **Bajo**, representando más del 88% del total general.
+- Las **ventas Muy Altas** son poco frecuentes (apenas 1.6% del total), y se destacan especialmente en la sucursal **Avda Colón**, con el **doble de ventas muy altas** que las otras sucursales.
+- Esto podría deberse a:
+  - Diferente perfil de clientes en la zona.
+  - Mejor rendimiento de ciertos productos premium.
+  - Algún error en la categorización o en la entrada de datos.
+
+#### ⚠️ Anomalía detectada en la columna `vendedor`:
+
+- Todos los vendedores figuran operando en **varias sucursales a la vez**, lo cual **no es coherente** con un escenario real de trabajo por turnos físicos.
+- 🧹 **Recomendación**: descartar esta variable del análisis o revisarla con el área responsable de los datos para su depuración.
+
+📁 Este análisis y tabla resumen han sido añadidos en la **Hoja 8** del archivo Excel del proyecto.
+
+---
+
+---
+
+---
 
 ---
 
@@ -151,25 +599,5 @@ Las contribuciones están abiertas. Si deseas mejorar o ampliar el proyecto, pue
 Mª Cruz T.E.  
 [GitHub: MariCruzTE](https://github.com/MariCruzTE)
 
-## Pasos seguidos durante el proyecto
-
-### Comprension general datos
-
-- Dataset con 5001 filas y 21 columnas iniciales
-- Se comprueba que no hay filas duplicadas
-- Se inicia el editor de Power Query para revisar y comprender las columnas: - Se cambian los nombres de columnas para que no haya mayusculas y sean mas adecuados
-  -contenido de columnas: - id_venta: - Identificador único de la transacción de venta - Sin errores, sin nulos - Se cambia tipo de dato a texto - fecha: fecha de las ventas, - comprende fechas entre el 01-01-2025 y 18-04-2025, 108 distintos, sin nulos - Se cambia tipo de dato a fecha - hora: - hora de la venta - entre las 7:00 y las 21:00 - Se cambia tipo de dato a hora - sucursal: - tienda que realiza la venta parecen ser de Cordoba, Argentina - 4 valores únicos, posible estandarizacion de nombres - Sucursal Nueva Córdoba ,Sucursal Shopping ,Sucursal Av. Colón ,Sucursal San Lorenzo 47 - sin nulos, tipo de dato texto - producto: - nombre del producto vendido - 36 valores distintos - sin nulos, tipo de dato texto - categoría: - categoria del producto - 11 distintas - sin nulos, formato texto
-  -tamaño: - Tamaño del producto vendido - 5 distintos (Tall, Pequeño, Grande, Venti) - nombres de tamaños en ingles y español, estandarizar datos - 73% de celdas vacías - hacer tratamiento de nulos - cantidad: - unidades vendidas en la transacion de compra - 5 valores distintos entre 1 y 5 - sin nulos, se cambia tipo de dato a numero entero - precio_ud: - precio unitario del producto - formato decimales con . - total_vemta: - precio unitario del producto - formato decimales con . - canal_compra: - canal por el que se ha realizado la compra - 3 valores distintos (En tienda, Take Away, Delivery) - en ingles y español, estandarizar datos - metodo_pago: - 3 distintos (App, tarjeta y efectivo) - estandarizar datos, cambiar App por palabra completa - cliente_miembro: - 2 distintos, si y no - descuento_miembro: - 3 distintos (0, 10, 15) - promoción_aplicada: - 4 distintos (combo, ninguna, 2x1, happy Hour) - estandarización de datos - vendedor: - 6 únicos(Julián, Luis, Sofía, Marcos, Florencia, Camila) - turno: - 3 únicos(Tarde, Mañana, Noche)
-  -tiempo_preparacion: - valor decimal, supongo en minutos - satisfacción cliente: - entre 1 y 5 - stock antes: - stock despues:
-
-- Se cambia el tipo de datos mas adecuado en cada columna
-- se sustituyen los (.) por (,) para adecuar los números decimales a la zona
-- Elegir las columnas que se van a quedar, posibles descartes:
-  - descuento miembro, no parece una columna relevante ni veo consistencia en los datos
-  - las dos columnas de stock, no parecen relevantes puesto que nunca llegan a tener roturas de stock que podria afectar a las ventas
-- posibles agrupaciones que pudieran ser interesantes
-  - por rangos de importe de gasto
-  - por rangos de tiempo de preparacion
-- creacion de columnas con fechas disgregadas dia, dia de la semana, mes, etc
 - estadistica descriptiva
   - datos>analisis de datos>estadistica descriptiva
