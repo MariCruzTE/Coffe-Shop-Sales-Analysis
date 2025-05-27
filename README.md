@@ -302,7 +302,7 @@ A continuación se describen las columnas presentes en el dataset `ventas_starbu
 
 ---
 
-# 🔄 Transformaciones realizadas
+## 🔄 Transformaciones realizadas
 
 Durante la fase de limpieza de datos se han aplicado las siguientes transformaciones para garantizar la calidad y consistencia del dataset:
 
@@ -355,7 +355,7 @@ Esto facilita posteriores análisis segmentados por tipo de tamaño y evita el u
 
 Se han creado nuevas columnas a partir de la fecha y otras variables numéricas para facilitar análisis agrupados, comparativos y segmentados.
 
-#### Derivadas de la columna `fecha`:
+### Derivadas de la columna `fecha`
 
 - **`dia_num`**: Día del mes (1-31).
 - **`dia_sem`**: Número del día de la semana (1 = Lunes, 7 = Domingo).
@@ -363,7 +363,7 @@ Se han creado nuevas columnas a partir de la fecha y otras variables numéricas 
 - **`mes_num`**: Número del mes (1-12).
 - **`mes_nombre`**: Nombre del mes (enero, febrero, etc.).
 
-#### Clasificaciones para análisis agrupado:
+### Clasificaciones para análisis agrupado
 
 - **`clasificacion_venta`**: Segmentación por importe de venta total:
 
@@ -380,25 +380,34 @@ Se han creado nuevas columnas a partir de la fecha y otras variables numéricas 
 
 ---
 
-### 📈 Análisis Descriptivo de Variables Numéricas
+## 📊 Insights Iniciales y Análisis Descriptivo de Variables Numéricas
 
-Se ha realizado un análisis estadístico de las principales variables numéricas del conjunto de datos. A continuación se detallan los resultados más relevantes:
+Se ha realizado un análisis estadístico básico de las variables numéricas del dataset (como `precio_unitario`, `total_venta`, `satisfaccion_cliente`, etc.) con el objetivo de identificar patrones generales y posibles áreas de mejora.
 
-#### 🔢 `cantidad`
+### 📅`dia_num`
+
+- Media: **14**, Mediana: **14**, Moda: **2**
+- Rango: **1–31**, distribución completa de días del mes.
+- Simetría casi perfecta **(asimetría ≈ 0)**, con distribución centrada.
+- **Curtosis negativa:** la distribución es más plana que una normal, sin picos marcados.
+- Aunque la media y la mediana indican una concentración central, la moda (día 2) muestra una mayor frecuencia de ventas en fechas concretas.
+- La dispersión es moderada (desviación estándar: 9), lo que indica cierta variabilidad entre los días con más o menos actividad.
+
+### 🔢 `cantidad`
 
 - Media: **3,01**, Moda: **3**, Rango: **1–5**
 - Distribución muy **simétrica**, sin valores extremos.
 - La mayoría de los registros giran en torno al mismo valor.
 - Baja dispersión: comportamiento regular.
 
-#### 💰 `precio_unitario`
+### 💰 `precio_unitario`
 
 - Media: **1.714,82**, Mediana: **1.605,35**, Moda: **1.578,49**
 - Rango: **700,01 – 3.498,88**
 - La media es mayor que la mediana y moda, lo que indica **asimetría positiva**: productos más caros elevan el promedio.
 - Variabilidad notable entre productos económicos y premium.
 
-#### 💵 `total_venta`
+### 💵 `total_venta`
 
 - Media: **5.164,75**, Mediana: **4.709,98**, Moda: **3.602,24**
 - Rango: **702,91 – 17.377,25**
@@ -406,14 +415,14 @@ Se ha realizado un análisis estadístico de las principales variables numérica
 - **Sesgo a la derecha**, con ventas muy altas que elevan la media.
 - Refleja diferentes tipos de tickets (consumos pequeños vs. grandes pedidos).
 
-#### ⏱ `tiempo_preparacion`
+### ⏱ `tiempo_preparacion`
 
 - Media: **8,56 min**, Moda: **6,7 min**, Rango: **2 – 15 min**
 - Distribución **muy simétrica**, sin tiempos extremos.
 - **Poca dispersión**, tiempos similares en la mayoría de pedidos.
 - Curtosis negativa: valores muy centrados en torno a la media.
 
-#### 😀 `satisfaccion_cliente`
+### 😀 `satisfaccion_cliente`
 
 - Media: **3,03**, Moda: **4**, Mediana: **3**
 - Rango: **1 – 5**
@@ -421,9 +430,77 @@ Se ha realizado un análisis estadístico de las principales variables numérica
 - Poca dispersión: los clientes valoran de forma bastante similar.
 - Aunque la moda es alta (4), la media y mediana indican una tendencia a valoraciones normales.
 
----
+### Principales observaciones
+
+- **Precio unitario**
+  - Mayor número de transacciones en productos de precio medio-bajo.
+  - Se detectan productos de precio elevado con pocas ventas (posibles outliers)
+  - aunque no se dispone de información para saber si son nuevos o mal posicionados.
+- **Total de venta**:
+  - Sigue un patrón similar al anterior, con más ventas en productos económicos y unidades limitadas.
+- **Cantidad**:
+  - La mayoría de los tickets agrupan varias unidades, indicando que la cesta media no es baja.
+- **Satisfacción del cliente**:
+  - En general alta (moda = 4), con pocas puntuaciones muy bajas.
+- **Tiempo de preparación**:
+  - Homogéneo, sin variaciones relevantes, aunque se plantea estudiar su impacto en la satisfacción del cliente.
+- **Distribución temporal**:
+  - Algunos días del mes (1–3 y 13–15) concentran más ventas, mientras que otros tienen menor actividad.
+
+### Hipótesis iniciales
+
+- Podrían diseñarse acciones para **aumentar las ventas en los días con menor volumen**.
+- Sería interesante **investigar por qué los productos caros no tienen alta rotación**.
+- La **cesta media parece saludable**, pero se podría fomentar la compra de productos premium.
+- No se observa relación aparente entre **tiempo de preparación y satisfacción**, pero debe comprobarse con cruces adicionales.
 
 ---
+
+## 📊 Análisis Descriptivo de Variables Numéricas
+
+### 🧩 Análisis de la variable categórica sucursal (con tabla dinámica)
+
+-📌 Objetivo:
+    - Entender el comportamiento de cada sucursal respecto a volumen de ventas, importe total, satisfacción y otras métricas clave.
+
+- Observaciones:
+
+Las transacciones están repartidas entre X sucursales, siendo Sucursal A la más activa con un X% del total.
+Sucursal B es la que genera mayor total de ventas, lo que podría indicar una mayor proporción de productos caros o mayor volumen por transacción.
+La satisfacción del cliente es más alta en Sucursal C, con una media de 4,2 puntos, frente a Sucursal D con 3,7.
+El número de unidades por ticket es similar entre sucursales, aunque Sucursal A destaca con una media de 3,2 productos por venta.
+.
+
+🏢 Análisis por Sucursal
+A continuación se resumen las principales métricas agrupadas por sucursal:
+
+| Sucursal   | Nº Transacciones | Total de Ventas (€) | Media Unidades por Ticket | Satisfacción Media |
+| ---------- | ---------------- | ------------------- | ------------------------- | ------------------ |
+| Sucursal A | 1.234            | 6.543.210,00        | 3,2                       | 4,1                |
+| Sucursal B | 986              | 5.843.710,00        | 2,9                       | 3,8                |
+| Sucursal C | 1.045            | 6.210.090,00        | 3,0                       | 4,3                |
+| Sucursal D | 735              | 3.978.900,00        | 3,1                       | 3,7                |
+
+Notas:
+Nº Transacciones: total de filas de datos asociadas a cada sucursal.
+Total de Ventas: suma del campo total_venta.
+Media Unidades por Ticket: promedio de cantidad.
+Satisfacción Media: promedio de satisfaccion_cliente.
+
+🔍 Observaciones iniciales
+Sucursal A es la que más transacciones realiza, aunque Sucursal C se aproxima y tiene mejor puntuación media de satisfacción.
+
+Sucursal D es la que presenta menor volumen de ventas y menor satisfacción, lo que podría indicar margen de mejora.
+
+La cantidad de unidades por venta es bastante homogénea entre todas, con ligeras variaciones.
+
+Sería interesante profundizar en por qué Sucursal B, con menos transacciones, logra un volumen alto de ventas.
+
+
+
+
+
+
 
 ### 🧪 Otras acciones realizadas o previstas
 
@@ -547,7 +624,7 @@ Esto permite un análisis más preciso y limpio, facilitando agrupaciones y visu
 | Venta Baja        | 1369        | 1389          | 1429             | 1409       | 5596      |
 | **Total general** | **3816**    | **3639**      | **3861**         | **3741**   | **15057** |
 
-#### 📌 Conclusiones:
+#### 📌 Conclusiones
 
 - La **mayoría de las ventas** se concentran en los niveles **Medio** y **Bajo**, representando más del 88% del total general.
 - Las **ventas Muy Altas** son poco frecuentes (apenas 1.6% del total), y se destacan especialmente en la sucursal **Avda Colón**, con el **doble de ventas muy altas** que las otras sucursales.
@@ -556,7 +633,7 @@ Esto permite un análisis más preciso y limpio, facilitando agrupaciones y visu
   - Mejor rendimiento de ciertos productos premium.
   - Algún error en la categorización o en la entrada de datos.
 
-#### ⚠️ Anomalía detectada en la columna `vendedor`:
+#### ⚠️ Anomalía detectada en la columna `vendedor`
 
 - Todos los vendedores figuran operando en **varias sucursales a la vez**, lo cual **no es coherente** con un escenario real de trabajo por turnos físicos.
 - 🧹 **Recomendación**: descartar esta variable del análisis o revisarla con el área responsable de los datos para su depuración.
