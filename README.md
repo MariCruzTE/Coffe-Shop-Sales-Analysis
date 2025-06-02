@@ -496,12 +496,6 @@ La cantidad de unidades por venta es bastante homogénea entre todas, con ligera
 
 Sería interesante profundizar en por qué Sucursal B, con menos transacciones, logra un volumen alto de ventas.
 
-
-
-
-
-
-
 ### 🧪 Otras acciones realizadas o previstas
 
 - Creación de nuevas columnas derivadas de `fecha` para análisis temporal (`día`, `mes`, `día de la semana`, etc.).
