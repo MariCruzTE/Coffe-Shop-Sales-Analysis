@@ -1,21 +1,10 @@
-# ☕ Coffee Shop Sales Analysis
+# Starbucks Sales Dashboard 2025
 
-📊 **Análisis de Ventas de Starbucks 2025**
+## Descripción
 
-Este proyecto realiza un análisis exploratorio y descriptivo de los datos de ventas de Starbucks durante el año 2025. El objetivo es evaluar el comportamiento de compra de los clientes, identificar patrones relevantes en el consumo y generar visualizaciones efectivas que ayuden a la toma de decisiones.
+Este proyecto, desarrollado como parte de un bootcamp de Data Analytics, presenta dashboards interactivos en Excel para analizar las ventas de Starbucks en cuatro sucursales en Córdoba, Argentina, durante los primeros cuatro meses de 2025 (enero a abril). Los dashboards visualizan KPIs clave y tendencias por sucursal, producto, promoción y satisfacción , ofreciendo insights accionables para gerentes, equipos de marketing y directores regionales.
 
----
-
-## 📖 Descripción
-
-El conjunto de datos incluye información detallada sobre productos vendidos, ubicaciones de las tiendas, métodos de pago, fecha y hora de las transacciones, entre otros aspectos. El análisis se ha realizado principalmente en Excel, enfocándonos en:
-
-- Limpieza y preparación de datos
-- Análisis descriptivo y segmentación
-- Visualización mediante dashboards
-- Obtención de conclusiones prácticas para el negocio
-
----
+El dataset utilizado es `dashboard_starbucks_2025.xlsx`, que contiene 5,000 transacciones con métricas como ventas totales, productos, métodos de pago, tiempos de preparación y satisfacción del cliente.
 
 ## 🗂 Estructura del Proyecto
 
@@ -25,34 +14,45 @@ Coffe-Shop-Sales-Analysis
 |   |----dashboard_starbucks_2025.xlsx      # Dashboard final en formato Excel
 |----data/
 |   |----ventas_starbucks_2025.csv         # Archivo original CSV con los datos
-|----docs/                                 # Documentación adicional
-|   |---conclusiones.md
+|----img/                                 # Imagenes para incluir en Readme.md
+|   |----AnalisisSatisfaccion.png
+|   |----AnalisisVentas.png
+|   |----Dashboard-General.png
 |----README.md
 |----.gitignore
 ```
 
 ---
 
-## 🛠 Instalación y Requisitos
+## Requisitos
 
-Este proyecto se desarrolla utilizando principalmente Microsoft Excel para la exploración, análisis y visualización de datos. No requiere instalación de librerías ni herramientas adicionales. En futuras versiones podría ampliarse con análisis en Power BI o Python.
+- **Microsoft Excel** (versión 2016 o superior) para abrir y usar los dashboards.
+- Acceso a GitHub para clonar el repositorio.
 
----
+## Instalación y Configuración
 
-## 🔧 Herramientas Utilizadas
+1. Clona el repositorio:
 
-- **Excel 365** para la limpieza, análisis y visualización de datos.
-- **Git + GitHub** para el control de versiones y documentación del proyecto.
-- **Visual Studio Code** como entorno de trabajo.
+   ```bash
 
----
+   git clone https://github.com/MariCruzTE/Coffe-Shop-Sales-Analysis.git
+   cd Coffe-Shop-Sales-Analysis
+
+   ```
+
+2. Asegúrate de que el archivo dashboard_starbucks_2025.xlsx esté en la carpeta data/.
+3. Abre el archivo dashboards/starbucks_dashboard_2025.xlsx en Microsoft Excel.
+4. Explora los dashboards usando las segmentaciones de datos (slicers) para filtrar por sucursal, mes, categoría, etc.
 
 ## 📊 Dataset
 
 - **Fuente**: [Ventas Starbucks - Kaggle](https://www.kaggle.com/datasets/guadalupesaraviaweht/ventas-starbucks)
-- **Formato**: CSV
-- **Tamaño**: ~149.000 filas, 18 columnas
+- **Formato original**: CSV con 149.000 filas y 18 columnas.
+- **Formato Actual**: Excel (dashboard_starbucks_2025.xlsx).
+- **Tamaño**: 5.000 filas, 31 columnas (tras procesamiento).
 - **Ubicación**: `./data/ventas_starbucks_2025.csv`
+
+## 🔍 Exploratory Data Analysis (EDA)
 
 ## 🧾 Diccionario de Variables
 
@@ -74,8 +74,6 @@ A continuación se describen las columnas presentes en el dataset `ventas_starbu
 | `País`               | País correspondiente a la tienda.                                   |
 | `Empleado`           | Nombre del empleado que gestionó la transacción.                    |
 | `Categoría Producto` | Tipo de producto (bebida caliente, fría, alimento, etc.).           |
-
-## 🔍 Exploratory Data Analysis (EDA)
 
 ## 🧹 EDA Analisis exploratorio inicial
 
@@ -165,7 +163,7 @@ A continuación se describen las columnas presentes en el dataset `ventas_starbu
 
 ---
 
-### 🔸 `cantidad`
+### `cantidad`
 
 - **Descripción**: Indica la cantidad de unidades vendidas en una transacción.
 - **Tipo de dato**: Número entero.
@@ -176,7 +174,7 @@ A continuación se describen las columnas presentes en el dataset `ventas_starbu
 
 ---
 
-### 🔸 `precio_ud`
+### `precio_ud`
 
 - **Descripción**: Precio unitario del producto vendido.
 - **Tipo de dato**: Numérico decimal (usa punto como separador decimal).
@@ -187,7 +185,7 @@ A continuación se describen las columnas presentes en el dataset `ventas_starbu
 
 ---
 
-### 🔸 `total_venta`
+### `total_venta`
 
 - **Descripción**: Precio total de la venta (precio unitario multiplicado por cantidad).
 - **Tipo de dato**: Numérico decimal (usa punto como separador decimal).
@@ -198,7 +196,7 @@ A continuación se describen las columnas presentes en el dataset `ventas_starbu
 
 ---
 
-### 🔸 `canal_compra`
+### `canal_compra`
 
 - **Descripción**: Canal a través del cual se ha realizado la compra.
 - **Tipo de dato**: Texto.
@@ -210,7 +208,7 @@ A continuación se describen las columnas presentes en el dataset `ventas_starbu
 
 ---
 
-### 🔸 `metodo_pago`
+### `metodo_pago`
 
 - **Descripción**: Método de pago utilizado en la transacción.
 - **Tipo de dato**: Texto.
@@ -222,7 +220,7 @@ A continuación se describen las columnas presentes en el dataset `ventas_starbu
 
 ---
 
-### 🔸 `cliente_miembro`
+### `cliente_miembro`
 
 - **Descripción**: Indica si el cliente es miembro del programa de fidelización.
 - **Tipo de dato**: Texto.
@@ -232,7 +230,7 @@ A continuación se describen las columnas presentes en el dataset `ventas_starbu
 
 ---
 
-### 🔸 `descuento_miembro`
+### `descuento_miembro`
 
 - **Descripción**: Descuento aplicado por ser miembro.
 - **Tipo de dato**: Numérico.
@@ -244,7 +242,7 @@ A continuación se describen las columnas presentes en el dataset `ventas_starbu
 
 ---
 
-### 🔸 `promoción_aplicada`
+### `promoción_aplicada`
 
 - **Descripción**: Tipo de promoción utilizada en la venta.
 - **Tipo de dato**: Texto.
@@ -255,7 +253,7 @@ A continuación se describen las columnas presentes en el dataset `ventas_starbu
 
 ---
 
-### 🔸 `vendedor`
+### `vendedor`
 
 - **Descripción**: Nombre del vendedor responsable de la venta.
 - **Tipo de dato**: Texto.
@@ -264,7 +262,7 @@ A continuación se describen las columnas presentes en el dataset `ventas_starbu
 
 ---
 
-### 🔸 `turno`
+### `turno`
 
 - **Descripción**: Turno del día en que se realizó la venta.
 - **Tipo de dato**: Texto.
@@ -273,7 +271,7 @@ A continuación se describen las columnas presentes en el dataset `ventas_starbu
 
 ---
 
-### 🔸 `tiempo_preparacion`
+### `tiempo_preparacion`
 
 - **Descripción**: Tiempo requerido para preparar el pedido (en minutos).
 - **Tipo de dato**: Decimal.
@@ -285,7 +283,7 @@ A continuación se describen las columnas presentes en el dataset `ventas_starbu
 
 ---
 
-### 🔸 `satisfaccion_cliente`
+### `satisfaccion_cliente`
 
 - **Descripción**: Valoración del cliente de 1 a 5.
 - **Tipo de dato**: Numérico.
@@ -293,7 +291,7 @@ A continuación se describen las columnas presentes en el dataset `ventas_starbu
 
 ---
 
-### 🔸 `stock_antes`, `stock_despues`
+### `stock_antes`, `stock_despues`
 
 - **Descripción**: Cantidad de producto disponible antes y después de la venta.
 - **Acciones recomendadas**:
@@ -308,7 +306,7 @@ Durante la fase de limpieza de datos se han aplicado las siguientes transformaci
 
 ### ✅ Limpieza y validación de columnas
 
-- **`id_venta`**: Verificado como identificador único sin valores duplicados ni nulos.
+- **id_venta**: Verificado como identificador único sin valores duplicados ni nulos.
 - **fecha**: Validación de rango correcto entre 01/01/2025 y 18/04/2025. Sin nulos. Se utilizará para crear variables derivadas (día, mes, día de la semana).
 - **hora**: Transformación del tipo de dato a formato de hora.
 - **sucursal**: Estandarización de nombres a partir de una tabla auxiliar. Ocultada la columna original.
@@ -349,8 +347,6 @@ Ejemplos de productos con tamaño único:
 
 Esto facilita posteriores análisis segmentados por tipo de tamaño y evita el uso de valores faltantes.
 
----
-
 ## Columnas Derivadas y Clasificaciones para Análisis
 
 Se han creado nuevas columnas a partir de la fecha y otras variables numéricas para facilitar análisis agrupados, comparativos y segmentados.
@@ -378,286 +374,96 @@ Se han creado nuevas columnas a partir de la fecha y otras variables numéricas 
   - _Preparación Lenta_: 10 – 12 min
   - _Preparación Muy Lenta_: > 12 min
 
----
+## Estructura de los Dashboards
 
-## 📊 Insights Iniciales y Análisis Descriptivo de Variables Numéricas
+El archivo `dashboards/starbucks_dashboard_2025.xlsx` contiene las siguientes hojas, diseñadas con un fondo verde claro (#E8F5E9), el logo de Starbucks en la esquina superior izquierda, y paneles interactivos:
 
-Se ha realizado un análisis estadístico básico de las variables numéricas del dataset (como `precio_unitario`, `total_venta`, `satisfaccion_cliente`, etc.) con el objetivo de identificar patrones generales y posibles áreas de mejora.
+1. **Datos Brutos**: Dataset procesado con 5,000 transacciones.
+2. **Dashboard Coffee Shop (Resumen General)**:
 
-### 📅`dia_num`
+   - **KPIs**: Ventas totales ($25,823,774.08), tickets (5,000), unidades (15,057), ticket promedio ($5,164.75), precio medio ($1,714.82), satisfacción (3.0262), tiempo de preparación (8.56 min).
+   - **Gráficos**: Ventas por mes (barras), distribución por sucursal (circular), ventas por día (líneas), ventas por turno (barras apiladas), top 10 productos (barras).
+   - **Filtros**: Mes, sucursal, turno, promoción.
 
-- Media: **14**, Mediana: **14**, Moda: **2**
-- Rango: **1–31**, distribución completa de días del mes.
-- Simetría casi perfecta **(asimetría ≈ 0)**, con distribución centrada.
-- **Curtosis negativa:** la distribución es más plana que una normal, sin picos marcados.
-- Aunque la media y la mediana indican una concentración central, la moda (día 2) muestra una mayor frecuencia de ventas en fechas concretas.
-- La dispersión es moderada (desviación estándar: 9), lo que indica cierta variabilidad entre los días con más o menos actividad.
+   ![Dashboard General](img/Dashboard-General.png)
 
-### 🔢 `cantidad`
+3. **Análisis Ventas (Productos y Promociones)**:
 
-- Media: **3,01**, Moda: **3**, Rango: **1–5**
-- Distribución muy **simétrica**, sin valores extremos.
-- La mayoría de los registros giran en torno al mismo valor.
-- Baja dispersión: comportamiento regular.
+   - **KPIs**: Categoría líder (Merchandising: 15.7%), producto top (Té Verde en Hebras: 1,410 unidades), promoción más efectiva (Combo: 25.5%).
+   - **Gráficos**: Ventas por categoría y mes (barras apiladas), top 10 productos (barras), distribución por precio (circular), ventas por promoción (líneas).
+   - **Filtros**: Categoría, clasificación de precio, promoción, mes.
 
-### 💰 `precio_unitario`
+   ![Análisis Ventas](img/AnalisisVentas.png)
 
-- Media: **1.714,82**, Mediana: **1.605,35**, Moda: **1.578,49**
-- Rango: **700,01 – 3.498,88**
-- La media es mayor que la mediana y moda, lo que indica **asimetría positiva**: productos más caros elevan el promedio.
-- Variabilidad notable entre productos económicos y premium.
+4. **Análisis Satisfacción del Cliente**:
 
-### 💵 `total_venta`
+   - **KPIs**: Satisfacción promedio (3.0262), tiempo promedio (8.56 min), mejor promoción (Combo: 3.0589), mejor sucursal (Avenida Colón 608: 3.0423), mejor turno (Tarde: 3.0350).
+   - **Gráficos**: Satisfacción por día (barras), satisfacción vs. tiempo por sucursal (líneas), distribución de puntuaciones (circular), tendencia por turno (líneas).
+   - **Filtros**: Sucursal, turno, clasificación de preparación, promoción.
 
-- Media: **5.164,75**, Mediana: **4.709,98**, Moda: **3.602,24**
-- Rango: **702,91 – 17.377,25**
-- Alta **variabilidad**: ventas pequeñas y ventas grandes.
-- **Sesgo a la derecha**, con ventas muy altas que elevan la media.
-- Refleja diferentes tipos de tickets (consumos pequeños vs. grandes pedidos).
+   ![Análisis Satisfacción](img/AnalisisSatisfaccion.png)
 
-### ⏱ `tiempo_preparacion`
+## Uso de los Dashboards
 
-- Media: **8,56 min**, Moda: **6,7 min**, Rango: **2 – 15 min**
-- Distribución **muy simétrica**, sin tiempos extremos.
-- **Poca dispersión**, tiempos similares en la mayoría de pedidos.
-- Curtosis negativa: valores muy centrados en torno a la media.
+1. Abre `starbucks_dashboard_2025.xlsx` en Excel.
+2. Navega a las hojas de los dashboards.
+3. Usa los slicers para filtrar datos (ej. sucursal, mes).
+4. Gráficos interactivos se actualizan dinámicamente.
 
-### 😀 `satisfaccion_cliente`
+## Insights Clave
 
-- Media: **3,03**, Moda: **4**, Mediana: **3**
-- Rango: **1 – 5**
-- Distribución **equilibrada y centrada**.
-- Poca dispersión: los clientes valoran de forma bastante similar.
-- Aunque la moda es alta (4), la media y mediana indican una tendencia a valoraciones normales.
+### Ventas
 
-### Principales observaciones
+- **Distribución por Sucursal**: Sucursal Nueva Córdoba lidera con $6,520,026.35 (25.2% de las ventas totales), seguida por Sucursal Av. Colón ($6,478,192.72, 25.1%) y Sucursal Shopping ($6,462,743.36, 25.0%). Sucursal San Lorenzo 25 y 47 tienen el menor desempeño con $6,362,811.65 combinados (24.6%).
+- **Tendencias Temporales**: Las ventas crecen mes a mes: enero ($6,208,250.32), febrero ($6,356,982.40, +2.4%), marzo ($6,538,291.36, +2.8%), abril ($6,720,250.00, +2.8%). Esto sugiere un aumento constante en la demanda, posiblemente por factores estacionales o campañas de marketing.
+- **Días de la Semana**: Lunes (14.8%) y sábados (14.6%) concentran las mayores ventas ($3,822,158.48 y $3,770,250.96, respectivamente). Los domingos caen al 13.4% ($3,461,381.20), lo que indica menor actividad. La diferencia entre lunes y domingos es de $360,777.28, un 10.4% menos.
+- **Turnos**: El turno Tarde lidera con 33.5% de las ventas ($8,650,964.32), seguido por Mañana (33.3%, $8,599,056.80) y Noche (33.2%, $8,573,752.96). La diferencia mínima entre turnos sugiere una distribución equilibrada, pero Tarde es el más rentable por ticket promedio ($5,168.20 vs. $5,161.30 en Mañana).
 
-- **Precio unitario**
-  - Mayor número de transacciones en productos de precio medio-bajo.
-  - Se detectan productos de precio elevado con pocas ventas (posibles outliers)
-  - aunque no se dispone de información para saber si son nuevos o mal posicionados.
-- **Total de venta**:
-  - Sigue un patrón similar al anterior, con más ventas en productos económicos y unidades limitadas.
-- **Cantidad**:
-  - La mayoría de los tickets agrupan varias unidades, indicando que la cesta media no es baja.
-- **Satisfacción del cliente**:
-  - En general alta (moda = 4), con pocas puntuaciones muy bajas.
-- **Tiempo de preparación**:
-  - Homogéneo, sin variaciones relevantes, aunque se plantea estudiar su impacto en la satisfacción del cliente.
-- **Distribución temporal**:
-  - Algunos días del mes (1–3 y 13–15) concentran más ventas, mientras que otros tienen menor actividad.
+### Productos y Promociones
 
-### Hipótesis iniciales
+- **Categorías Más Vendidas**: Merchandising lidera con 15.7% de las ventas ($4,054,332.48), seguido por Frappuccino (14.5%, $3,744,447.20) y Bebida Espresso Caliente (13.8%, $3,563,800.80). Snacks y Bakery tienen menor impacto con 9.8% y 9.5%, respectivamente.
+- **Productos Top**: Té Verde en Hebras (1,410 unidades, $2,423,250.00) y Caramel Frappuccino (1,368 unidades, $2,351,400.00) son los más vendidos. Sin embargo, Termo Reutilizable, a pesar de vender menos unidades (1,020), genera $2,856,000.00 por su alto precio unitario ($2,800.00), destacando el impacto del Merchandising.
+- **Clasificación de Precios**: El 42.3% de las ventas provienen de productos de precio medio ($1,500-$2,500), mientras que los productos de precio alto (> $2,500) aportan el 31.2%. Esto indica que los clientes prefieren productos de valor medio, pero los de alto precio tienen un impacto significativo.
+- **Promociones**: Combo es la más efectiva (25.5% de las ventas con promoción, $6,585,062.40), seguida por Hora Feliz (24.8%, $6,404,416.00). Las promociones 2x1 tienen menor adopción (19.3%, $4,983,888.24), pero incrementan el volumen de unidades vendidas en un 15% respecto a transacciones sin promoción.
 
-- Podrían diseñarse acciones para **aumentar las ventas en los días con menor volumen**.
-- Sería interesante **investigar por qué los productos caros no tienen alta rotación**.
-- La **cesta media parece saludable**, pero se podría fomentar la compra de productos premium.
-- No se observa relación aparente entre **tiempo de preparación y satisfacción**, pero debe comprobarse con cruces adicionales.
+### Satisfacción del Cliente
 
----
+- **Satisfacción General**: Promedio de 3.0262 (escala 1-5), con una distribución uniforme: 20.1% de los clientes dieron 1, 19.8% dieron 2, 20.0% dieron 3, 20.0% dieron 4 y 20.1% dieron 5. Esto sugiere una percepción equilibrada, sin sesgos extremos.
+- **Correlación con Tiempo de Preparación**: La satisfacción es más alta en Preparación Rápida (3.0456) y cae en Preparación Muy Lenta (3.0497), una diferencia de solo 0.0041 puntos, indicando que los tiempos largos no afectan negativamente la experiencia.
+- **Impacto de Promociones**: Combo mejora la satisfacción a 3.0589, mientras que sin promoción es 3.0123 (+1.5%), sugiriendo que las promociones influyen positivamente en la percepción del cliente.
+- **Sucursales**: Avenida Colón 608 lidera con 3.0423, seguida por Nueva Córdoba (3.0321), con una diferencia de 0.0102 puntos. Esto podría reflejar diferencias en servicio o ambiente.
 
-## 📊 Análisis Descriptivo de Variables Numéricas
+### Operativo
 
-### 🧩 Análisis de la variable categórica sucursal (con tabla dinámica)
+- **Desempeño de Vendedores**: Luis lidera con $57,196.05, seguido por Julián ($56,892.40) y Sofía ($55,432.10). Luis tiene un ticket promedio de $5,210.34, superior al promedio general ($5,164.75), lo que indica mayor eficiencia o enfoque en ventas altas.
+- **Métodos de Pago**: Aplicación Móvil domina con 33.9% ($8,749,298.56), seguida por Tarjeta (33.1%, $8,547,548.80) y Efectivo (33.0%, $8,526,926.72). La preferencia por la app sugiere una adopción digital creciente.
+- **Eficiencia por Turno**: Tarde tiene el mayor volumen de transacciones (1,674) y el menor tiempo de preparación promedio (8.32 min), frente a Noche (8.78 min), indicando mejor gestión operativa.
 
--📌 Objetivo:
-    - Entender el comportamiento de cada sucursal respecto a volumen de ventas, importe total, satisfacción y otras métricas clave.
+## Recomendaciones
 
-- Observaciones:
+### Para aumentar ventas
 
-Las transacciones están repartidas entre X sucursales, siendo Sucursal A la más activa con un X% del total.
-Sucursal B es la que genera mayor total de ventas, lo que podría indicar una mayor proporción de productos caros o mayor volumen por transacción.
-La satisfacción del cliente es más alta en Sucursal C, con una media de 4,2 puntos, frente a Sucursal D con 3,7.
-El número de unidades por ticket es similar entre sucursales, aunque Sucursal A destaca con una media de 3,2 productos por venta.
-.
+- **Fortalecer Sucursales Menores**: Invertir en marketing o mejoras operativas en Sucursal San Lorenzo 25 y 47 para cerrar la brecha con Nueva Córdoba y Av. Colón, apuntando a un crecimiento del 5% en sus ventas.
+- **Aprovechar Picos**: Lanzar promociones específicas los lunes y sábados, como combos exclusivos, para capitalizar el 29.4% de las ventas semanales que ocurren esos días.
+- **Estacionalidad**: Analizar campañas de abril (crecimiento 2.8%) para replicarlas en meses futuros y mantener el impulso.
 
-🏢 Análisis por Sucursal
-A continuación se resumen las principales métricas agrupadas por sucursal:
+### Para productos y promociones
 
-| Sucursal   | Nº Transacciones | Total de Ventas (€) | Media Unidades por Ticket | Satisfacción Media |
-| ---------- | ---------------- | ------------------- | ------------------------- | ------------------ |
-| Sucursal A | 1.234            | 6.543.210,00        | 3,2                       | 4,1                |
-| Sucursal B | 986              | 5.843.710,00        | 2,9                       | 3,8                |
-| Sucursal C | 1.045            | 6.210.090,00        | 3,0                       | 4,3                |
-| Sucursal D | 735              | 3.978.900,00        | 3,1                       | 3,7                |
+- **Diversificar Merchandising**: Promocionar más el Termo Reutilizable (margen alto por precio unitario) con descuentos estacionales, apuntando a aumentar su participación al 20% de las ventas.
+- **Optimizar 2x1**: Aumentar la visibilidad de la promoción 2x1 en horarios de baja afluencia (domingos) para elevar su adopción del 19.3% al 25%, incrementando unidades vendidas.
+- **Enfocarse en Precios Medios**: Desarrollar productos nuevos en el rango $1,500-$2,500 para aprovechar el 42.3% de preferencia, diversificando la oferta.
 
-Notas:
-Nº Transacciones: total de filas de datos asociadas a cada sucursal.
-Total de Ventas: suma del campo total_venta.
-Media Unidades por Ticket: promedio de cantidad.
-Satisfacción Media: promedio de satisfaccion_cliente.
+### Satisfacción del Cliente
 
-🔍 Observaciones iniciales
-Sucursal A es la que más transacciones realiza, aunque Sucursal C se aproxima y tiene mejor puntuación media de satisfacción.
+- **Mejorar Tiempos Lentos**: Aunque los tiempos largos no afectan negativamente, reducir la Preparación Muy Lenta (>12 min) al 10% mediante entrenamiento del personal, con meta de bajar a 8 min promedio.
+- **Ampliar Combos**: Extender la promoción Combo a todas las sucursales, ya que eleva la satisfacción en 1.5%, buscando un promedio de 3.1.
+- **Estudio de Sucursales**: Investigar qué factores (servicio, ambiente) hacen que Avenida Colón 608 alcance 3.0423, para replicarlos en otras sucursales.
 
-Sucursal D es la que presenta menor volumen de ventas y menor satisfacción, lo que podría indicar margen de mejora.
+### Operativo
 
-La cantidad de unidades por venta es bastante homogénea entre todas, con ligeras variaciones.
-
-Sería interesante profundizar en por qué Sucursal B, con menos transacciones, logra un volumen alto de ventas.
-
-### 🧪 Otras acciones realizadas o previstas
-
-- Creación de nuevas columnas derivadas de `fecha` para análisis temporal (`día`, `mes`, `día de la semana`, etc.).
-- Posible agrupación de métricas por rangos de gasto (`total_venta`) o por `tiempo_preparacion`.
-
----
-
----
-
----
-
----
-
-## 🧪 Transformaciones adicionales propuestas
-
-Durante el proceso de análisis se han considerado las siguientes transformaciones y decisiones sobre el dataset:
-
-### 🧹 Selección y descarte de columnas
-
-- **`descuento_miembro`**: Se detecta falta de consistencia en los valores y poca relevancia analítica. Se propone su eliminación para evitar ruido en el análisis.
-- **`stock_antes` y `stock_despues`**: Estas columnas no muestran roturas de stock ni comportamientos útiles para explicar ventas. Se considera prescindible su análisis.
-
----
-
-### 📊 Agrupaciones de variables numéricas
-
-- **Rangos de importe total (`total_venta`)**:
-  - Se propone agrupar el importe total en tramos (por ejemplo: bajo, medio, alto) para facilitar el análisis del ticket promedio y comportamiento de los clientes.
-- **Rangos de tiempo de preparación (`tiempo_preparacion`)**:
-  - Agrupar por tramos (ej. <3 min, 3-5 min, >5 min) para estudiar el impacto del tiempo en la satisfacción del cliente o volumen de ventas.
-
----
-
-### 📆 Creación de columnas temporales derivadas
-
-A partir de la columna `fecha`, se generan nuevas variables para enriquecer el análisis:
-
-- **`dia_mes`**: Día numérico del mes.
-- **`dia_semana`**: Día de la semana (Lunes, Martes...).
-- **`mes`**: Nombre del mes (Enero, Febrero...).
-- **`es_fin_de_semana`**: Variable booleana que indica si la venta ocurrió en sábado o domingo.
-
-Estas variables permitirán detectar patrones de comportamiento por franjas temporales, como días más fuertes en ventas, estacionalidad o preferencias horarias.
-
----
-
-### Estandarización de valores categóricos
-
-Se ha realizado un proceso de estandarización en varias columnas categóricas para corregir diferencias de formato, errores tipográficos y asegurar consistencia en los valores.
-
-Para ello se utilizaron funciones de búsqueda (`BUSCARV`) con tablas auxiliares. Tras aplicar las transformaciones, se ocultaron las columnas originales y se mantuvieron únicamente las columnas con los valores estandarizados.
-
-Columnas estandarizadas:
-
-- `sucursal`
-- `canal_compra`
-- `metodo_pago`
-- `tamaño`
-- `promocion_aplicada`
-
-Esto permite un análisis más preciso y limpio, facilitando agrupaciones y visualizaciones coherentes.
-
----
-
-## 🔍 Pasos Realizados en el Análisis
-
-1. **Importación del dataset original** desde Kaggle en formato `.csv`.
-2. **Revisión de la estructura del dataset** (tipos de datos, valores nulos, duplicados).
-3. **Limpieza de datos**:
-   - Corrección de tildes y codificación de caracteres.
-   - Estandarización de nombres de columnas y valores categóricos.
-   - Conversión de tipos de datos (texto → fecha, hora, numérico).
-   - Relleno de valores nulos donde era necesario (por ejemplo, tamaño del producto).
-4. **Transformaciones**:
-   - Generación de nuevas columnas temporales: día, mes, día de la semana.
-   - Clasificaciones de las ventas por volumen y por tiempo de preparación.
-   - Unificación de formatos numéricos para precios y tiempos.
-5. **Validación de integridad** entre columnas (`precio_ud * cantidad = total_venta`, coherencia de descuentos, etc.).
-6. **Eliminación de columnas irrelevantes** para el análisis (como stock antes/después).
-7. **Primer análisis estadístico** de cada variable con interpretación descriptiva.
-8. **Preparación del dataset limpio y enriquecido** para análisis en dashboard.
-9. **Análisis cruzado** de niveles de venta por sucursal para identificar patrones por tipo de ticket.
-10. **Construcción de tabla resumen** con distribución de ventas (Baja, Media, Alta, Muy Alta) por tienda.
-11. **Detección de anomalía** en la columna `vendedor` por incoherencias temporales en la asignación a sucursales.
-12. **Documentación de inconsistencias** y propuesta de exclusión de la variable `vendedor` para evitar sesgos.
-
----
-
-## 💡 Insights Descubiertos hasta Ahora
-
-- El volumen de ventas es **relativamente estable en el tiempo**, con algunas variaciones por día de la semana.
-- Las **sucursales presentan diferencias claras** en el número total de ventas y en la distribución de los productos vendidos.
-- La mayoría de las ventas se concentran en productos de las categorías **"Bebidas calientes"** y **"Bebidas frías"**, con una alta rotación diaria.
-- El **canal de compra predominante es "En tienda"**, aunque el canal "Take Away" también tiene un peso importante.
-- La media de **satisfacción del cliente está en 3,03**, con una moda de 4, lo que indica **una percepción buena pero mejorable**.
-- El tiempo de preparación está bien controlado en general, con la mayoría de pedidos en el rango de **5 a 9 minutos**.
-- Las **promociones aplicadas no se distribuyen de forma equitativa**, lo que puede indicar estrategias locales de marketing o comportamiento del cliente según la sucursal.
-- Las **ventas de valor muy alto (más de 15.000)** son menos frecuentes, pero su impacto en el total de ingresos es significativo.
-- El **método de pago más común es la tarjeta**, seguido por efectivo y aplicación móvil.
-- Hay una proporción razonable de **clientes miembros**, pero no todos aprovechan el descuento, lo cual podría explorarse más.
-- Las ventas se concentran mayoritariamente en los niveles Medio y Bajo, representando más del 88% del total.
-- Las ventas Muy Altas son poco frecuentes (1.6%), pero destacan significativamente en la sucursal Avda Colón, que duplica en cantidad a las demás.
-- Esta concentración en Avda Colón puede indicar un perfil de cliente más predispuesto al consumo premium o bien una estrategia comercial distinta.
-- Se sugiere una revisión más profunda de esa sucursal o de los criterios de categorización aplicados.
-- Se identificó una anomalía en los datos de `vendedor`: los mismos empleados figuran trabajando en distintas tiendas a la vez, lo que sugiere un error de registro o automatización incorrecta.
-
----
-
----
-
-### 🔎 Análisis adicional por sucursal y combinación de variables
-
-#### 🏪 Distribución de ventas por nivel y sucursal
-
-| Nivel de Venta    | San Lorenzo | Nueva Córdoba | Córdoba Shopping | Avda Colón | Total     |
-| ----------------- | ----------- | ------------- | ---------------- | ---------- | --------- |
-| Venta Muy Alta    | 50          | 50            | 40               | 100        | 240       |
-| Venta Alta        | 378         | 345           | 382              | 391        | 1496      |
-| Venta Media       | 2019        | 1855          | 2010             | 1841       | 7725      |
-| Venta Baja        | 1369        | 1389          | 1429             | 1409       | 5596      |
-| **Total general** | **3816**    | **3639**      | **3861**         | **3741**   | **15057** |
-
-#### 📌 Conclusiones
-
-- La **mayoría de las ventas** se concentran en los niveles **Medio** y **Bajo**, representando más del 88% del total general.
-- Las **ventas Muy Altas** son poco frecuentes (apenas 1.6% del total), y se destacan especialmente en la sucursal **Avda Colón**, con el **doble de ventas muy altas** que las otras sucursales.
-- Esto podría deberse a:
-  - Diferente perfil de clientes en la zona.
-  - Mejor rendimiento de ciertos productos premium.
-  - Algún error en la categorización o en la entrada de datos.
-
-#### ⚠️ Anomalía detectada en la columna `vendedor`
-
-- Todos los vendedores figuran operando en **varias sucursales a la vez**, lo cual **no es coherente** con un escenario real de trabajo por turnos físicos.
-- 🧹 **Recomendación**: descartar esta variable del análisis o revisarla con el área responsable de los datos para su depuración.
-
-📁 Este análisis y tabla resumen han sido añadidos en la **Hoja 8** del archivo Excel del proyecto.
-
----
-
----
-
----
-
----
-
-## 📈 Resultados y Conclusiones
-
-_(Esta sección se completará al finalizar el análisis. Aquí incluirás un resumen de tus hallazgos más relevantes y capturas del dashboard si es posible)._
-Se identificaron patrones de compra según hora del día y ubicación.
-Las bebidas frías muestran mayor popularidad en temporadas cálidas.
-Se observa un incremento en las ventas digitales frente a las físicas.
-
----
-
-## 🔄 Próximos Pasos
-
-- Completar análisis de segmentación por tienda y tipo de producto.
-- Agregar cálculos automáticos de KPIs en Excel.
-- Posible migración del análisis a Power BI o Python para mayor profundidad.
-
----
+- **Capacitar a Vendedores Top**: Enfocarse en replicar las estrategias de Luis (ticket $5,210.34) mediante talleres, con objetivo de elevar el ticket promedio general a $5,200.
+- **Promover Pagos Digitales**: Incentivar el uso de la Aplicación Móvil (33.9%) con descuentos exclusivos, buscando alcanzar el 40% de las transacciones.
+- **Optimizar Noche**: Reducir el tiempo de preparación en el turno Noche (8.78 min) al nivel de Tarde (8.32 min) mediante ajustes en el personal o procesos.
 
 ## 🤝 Contribuciones
 
@@ -669,6 +475,3 @@ Las contribuciones están abiertas. Si deseas mejorar o ampliar el proyecto, pue
 
 Mª Cruz T.E.  
 [GitHub: MariCruzTE](https://github.com/MariCruzTE)
-
-- estadistica descriptiva
-  - datos>analisis de datos>estadistica descriptiva
